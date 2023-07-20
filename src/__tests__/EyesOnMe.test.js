@@ -1,18 +1,17 @@
+
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import EyesOnMe from "../components/EyesOnMe";
 
-beforeEach(() => {
-  render(<EyesOnMe />);
-});
-
 test('displays a button with the text "Eyes on me"', () => {
+  render(<EyesOnMe />);
   expect(screen.queryByText(/Eyes on me/)).toBeInTheDocument();
 });
 
 test("focusing the button triggers console output", () => {
   console.log = jest.fn();
 
+  render(<EyesOnMe />);
   const button = screen.queryByText(/Eyes on me/);
   fireEvent.focus(button);
 
@@ -23,6 +22,7 @@ test("focusing the button triggers console output", () => {
 test("removing focus (blur) on the button triggers console output", () => {
   console.log = jest.fn();
 
+  render(<EyesOnMe />);
   const button = screen.queryByText(/Eyes on me/);
   fireEvent.blur(button);
 

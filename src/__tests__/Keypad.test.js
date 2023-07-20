@@ -1,20 +1,17 @@
+
 import "@testing-library/jest-dom";
 import { render, fireEvent } from "@testing-library/react";
 import Keypad from "../components/Keypad";
 
-let container;
-
-beforeEach(() => {
-  container = render(<Keypad />).container;
-});
-
 test("displays one input", () => {
+  const { container } = render(<Keypad />);
   const input = container.querySelector("input");
   expect(input).toBeInTheDocument();
   expect(input.tagName).toBe("INPUT");
 });
 
 test("displays an input with the right input type", () => {
+  const { container } = render(<Keypad />);
   const input = container.querySelector("input");
   expect(input.type).toBe("password");
 });
@@ -22,6 +19,7 @@ test("displays an input with the right input type", () => {
 test("typing in the input triggers console output", () => {
   console.log = jest.fn();
 
+  const { container } = render(<Keypad />);
   const input = container.querySelector("input");
   fireEvent.change(input, { target: { value: "123" } });
 
